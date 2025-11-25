@@ -257,7 +257,8 @@
 
         @media (max-width: 600px) {
             .container {
-                transform: translateY(-0px); /* Adjusted for mobile */
+                /* FIX: Push content down slightly for better visual centering on mobile */
+                transform: translateY(40px); 
             }
             .subtitle-box { font-size: 0.9rem; max-width: 90vw; } /* Adjusted mobile font size */
             .charm { font-size: 60px; }
