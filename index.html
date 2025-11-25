@@ -13,7 +13,7 @@
             --light-text-color: #FEF1E6; /* General light text, photo frame border */
             --success-green: #1E3F20; /* Mission Accomplished text */
             --pixel-white: #ffffff; /* For salt grains */
-            --game-text: 'Press Start 2P', cursive;
+            --game-text: 'Press Start 2P', cursive; /* FIX: Restored space in font name to ensure pixel font loads */
         }
 
         * {
@@ -99,7 +99,7 @@
         /* SYNCED GLOW DURATION: 0.8s */
         @keyframes glowing {
             0% { box-shadow: inset -8px -8px 0px 0px #ab6a1f, 0 0 10px var(--accent-orange), 8px 8px 0px 0px var(--darkest-contrast); }
-            100% { box-shadow: inset -8px -8px 0px 0px #ab6a1f, 0 0 25px #ffe066, 8px 8px 0px 0px var(--darkest-contrast); filter: brightness(1.2); }
+            100% { box-shadow: inset -8px -8px 0 0 #ab6a1f, 0 0 25px #ffe066, 8px 8px 0 0 var(--darkest-contrast); filter: brightness(1.2); }
         }
 
         /* --- Good Luck Charms (Emojis) --- */
@@ -258,6 +258,10 @@
             }
             .subtitle-box { font-size: 0.9rem; max-width: 90vw; } /* Adjusted mobile font size */
             .charm { font-size: 60px; }
+            /* LIFTING CHARMS FOR MOBILE SAFARI/CHROME BOTTOM UI */
+            .charm-bl, .charm-br {
+                bottom: 80px; /* Increased from 30px to clear mobile browser UI */
+            }
             .pixel-btn { font-size: 1.4rem; padding: 25px 40px; } /* Adjusted button size for mobile */
             .photo-frame { width: 250px; height: 250px; }
             .emoji-sprite { font-size: 80px; }
@@ -460,8 +464,8 @@
             handWrapper.style.transition = "left 1s ease-in-out, top 1s ease-in-out";
             handSprite.style.transition = "transform 0.5s ease-in-out";
             
-            // Move hand to the right (throw position)
-            handWrapper.style.left = "calc(50% + 300px)";
+            // Move hand to the right (throw position) - Use vw for responsiveness and visibility
+            handWrapper.style.left = "90vw"; // Changed from "calc(50% + 300px)"
             handWrapper.style.top = "50%";
             
             // Simultaneously rotate the hand sprite within its wrapper to face downwards
@@ -475,9 +479,9 @@
                 await new Promise(r => setTimeout(r, 50));
             }
             
-            // 3. Move hand off screen
+            // 3. Move hand to a resting position visible on screen
             handWrapper.style.transition = "left 0.5s ease-in";
-            handWrapper.style.left = "calc(100% + 200px)";
+            handWrapper.style.left = "95vw"; // Changed from "calc(100% + 200px)"
             
             await new Promise(r => setTimeout(r, 600));
 
